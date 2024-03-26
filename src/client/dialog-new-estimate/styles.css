@@ -1,0 +1,133 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  CSSTransitionGroup styling
+*/
+
+/* Animation for entering elements */
+.sheetNames-enter,
+.sheetNames-appear {
+  opacity: 0;
+}
+
+.sheetNames-enter.sheetNames-enter-active,
+.sheetNames-appear.sheetNames-appear-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in-out;
+}
+
+/* Animation for exiting elements */
+.sheetNames-exit {
+  opacity: 1;
+}
+
+.sheetNames-exit.sheetNames-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+/* CSS for SheetButton component */
+.sheet-button {
+  margin-top: 1.25rem; /* mt-5 */
+  padding: 0.75rem 0; /* py-3 */
+  width: 50%; /* w-1/2 */
+  justify-content: center; /* justify-center */
+  border-bottom-width: 2px; /* border-b-2 */
+  font-weight: 500; /* font-medium */
+  display: inline-flex; /* inline-flex */
+  line-height: 1; /* leading-none */
+}
+
+.sheet-button:hover {
+  border-color: #f0e2e9; /* border-gray-200 */
+  color: #375137; /* text-gray-900 */
+  cursor: pointer; /* hover:text-gray-900 */
+}
+
+.sheet-button.active {
+  background-color: #f3f4f6; /* bg-gray-100 */
+  border-color: #cd656e; /* border-indigo-500 */
+  color: #6574cd; /* text-indigo-500 */
+  border-radius: 0.25rem 0.25rem 0 0; /* rounded-t */
+}
+
+.sheet-button .btn {
+  background-color: transparent; /* bg-transparent */
+  border: none;
+  outline: none; /* focus:outline-none */
+}
+
+.sheet-button .btn.delete {
+  color: #dc262f; /* text-red-500 */
+}
+/* styles.css */
+
+.btn {
+  /* Common button styles */
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-add-sheet {
+  /* Button specific to add sheet */
+  background-color: #4f46e5; /* Example background color */
+  color: #fff; /* Example text color */
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-add-sheet:hover {
+  background-color: #38cac3; /* Example hover background color */
+}
+
+/* Additional custom styles */
+.input-field {
+  /* Add your custom styles here */
+  border: 1px solid #CBD5E0;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+  /* Add focus styles */
+  border-color: #4F46E5;
+  outline: none;
+}
+
+.btn {
+  /* Common button styles */
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-add-line-item {
+  /* Button specific to add line item */
+  background-color: #4F46E5;
+  color: #fff;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-add-line-item:hover {
+  background-color: #38CAC3;
+}
+
+.btn-add-sheet {
+  /* Button specific to submit estimate */
+  background-color: #4F46E5;
+  color: #fff;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-add-sheet:hover {
+  background-color: #38CAC3;
+}
