@@ -22,15 +22,24 @@ const NewEstimateDialog = () => {
     serverFunctions.setActiveSheet(sheetName).catch(alert);
   };
 
-  const submitNewSheet = async (sheetData) => {
+  // Updated submitNewSheet function
+  const submitNewSheet = async (formData) => {
     try {
-      const newSheetTitle = `${sheetData.customer}-${sheetData.estimateNumber}`;
-      const response = await serverFunctions.addSheet(newSheetTitle, sheetData);
-      setSheets(response);
-      // Update the active sheet data with new sheet's data
-      setActiveSheetData({ name: newSheetTitle, ...sheetData });
+      // Using formData to construct the data object for submission
+      const submitData = {
+        customerName: formData.customer, // Adjusted to formData.customer
+        estimateName: formData.estimateNumber, // Adjusted to formData.estimateNumber
+        date: new Date().toDateString(), // Kept as is, adjust as necessary
+        lineItems: formData.lineItems // Adjusted to formData.lineItems
+      };
+
+      // Assuming sheetTitle is derived from formData (or you could directly use formData.estimateNumber)
+      const sheetTitle = `${formData.customer}-${formData.estimateNumber}`;
+      
+      const response = await serverFunctions.addSheet(sheetTitle, submitData);
+      setSheets(response); // Assuming response includes the updated sheets list
     } catch (error) {
-      alert(error);
+      console.error(error);
     }
   };
 

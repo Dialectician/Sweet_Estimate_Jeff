@@ -18,23 +18,39 @@ export const getSheetsData = () => {
 export const addSheet = (sheetTitle, data = {}) => {
   const { customerName, estimateName, date, lineItems } = data;
 
+  // Ensure a sheet is created only if required data is present
+  if (!customerName || !estimateName || !date || !Array.isArray(lineItems)) {
+    throw new Error('Missing required data for creating a sheet.');
+  }
+
   const sheet = SpreadsheetApp.getActive().insertSheet(sheetTitle);
   const headers = ['Customer Name', 'Estimate Name', 'Date', 'Description', 'Materials', 'Engineering Hours', 'Production Hours', 'Finish Hours', 'Installation Hours'];
   sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
 
-  if (customerName && estimateName && date) {
-    sheet.appendRow([customerName, estimateName, date]); // Add customer info to the sheet
+  // Add customer info to the second row
+  const customerInfo = [customerName, estimateName, date, '', '', '', '', '', ''];
+  sheet.getRange(2, 1, 1, customerInfo.length).setValues([customerInfo]);
 
-    if (lineItems && lineItems.length > 0) {
-      lineItems.forEach(item => {
-        const { description, materials, engineeringHours, productionHours, finishHours, installationHours } = item;
-        sheet.appendRow([description, materials, engineeringHours, productionHours, finishHours, installationHours]);
-      });
-    }
+  // Starting from the third row, add line items
+  const lineItemValues = lineItems.map(item => [
+    '', // These are placeholders for customerName, estimateName, and date columns
+    '',
+    '',
+    item.description,
+    item.materials,
+    item.engineeringHours,
+    item.productionHours,
+    item.finishHours,
+    item.installationHours
+  ]);
+
+  if (lineItemValues.length > 0) {
+    sheet.getRange(3, 1, lineItemValues.length, headers.length).setValues(lineItemValues);
   }
 
   return getSheetsData();
 };
+
 
 export const deleteSheet = (sheetIndex) => {
   const sheets = getSheets();
