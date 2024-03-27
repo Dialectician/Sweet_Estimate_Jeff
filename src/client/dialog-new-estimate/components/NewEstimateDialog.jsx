@@ -46,7 +46,7 @@ const NewEstimateDialog = () => {
   return (
     <div>
       <p><b>New Estimate</b></p>
-      <p>Create a new Estimate. Click the red &times; next to the sheet name to delete it.</p>
+      <p>Create a new Estimate. Click the red &times; next to the Estimate to delete it.</p>
       <FormInput submitNewSheet={submitNewSheet} activeSheetData={activeSheetData} />
       <TransitionGroup className="sheet-list">
         {sheets.map((sheet) => (
