@@ -148,9 +148,14 @@ const FormInput = ({ submitNewSheet, activeSheetData }) => {
 </ul>
 
 <div className="flex justify-center mt-8">
-  <button type="submit" className="btn btn-add-sheet">
-    Submit Estimate
-  </button>
+<button 
+  type="submit" 
+  className={`btn btn-add-sheet ${!customer || !estimateNumber ? 'opacity-50 cursor-not-allowed' : ''}`}
+  disabled={!customer || !estimateNumber} // Disable the button if conditions are not met
+>
+  Submit Estimate
+</button>
+
 </div>
 
       </form>
