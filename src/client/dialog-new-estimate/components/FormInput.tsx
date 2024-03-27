@@ -1,3 +1,4 @@
+//  FormInput.tsx - Functioning version - allows edit of existing line items 
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
