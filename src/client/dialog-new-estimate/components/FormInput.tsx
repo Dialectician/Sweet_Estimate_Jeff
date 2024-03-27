@@ -1,8 +1,7 @@
-// FormInput.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const FormInput = ({ submitNewSheet }) => {
+const FormInput = ({ submitNewSheet, activeSheetData }) => {
   const [customer, setCustomer] = useState('');
   const [estimateNumber, setEstimateNumber] = useState('');
   const [description, setDescription] = useState('');
@@ -13,7 +12,22 @@ const FormInput = ({ submitNewSheet }) => {
   const [installationHours, setInstallationHours] = useState('');
   const [lineItems, setLineItems] = useState([]);
 
-  const handleInputChange = (setState) => (event) => setState(event.target.value);
+  useEffect(() => {
+    if (activeSheetData) {
+      setCustomer(activeSheetData.customer || '');
+      setEstimateNumber(activeSheetData.estimateNumber || '');
+      setLineItems(activeSheetData.lineItems || []);
+    } else {
+      // Reset the form if there is no active sheet data
+      setCustomer('');
+      setEstimateNumber('');
+      setLineItems([]);
+    }
+  }, [activeSheetData]);
+
+  const handleInputChange = (setState) => (event) => {
+    setState(event.target.value);
+  };
 
   const handleAddLineItem = () => {
     const newItem = {
@@ -25,7 +39,6 @@ const FormInput = ({ submitNewSheet }) => {
       installationHours
     };
     setLineItems([...lineItems, newItem]);
-    // Reset fields after adding line item
     setDescription('');
     setMaterials('');
     setEngineeringHours('');
@@ -36,10 +49,11 @@ const FormInput = ({ submitNewSheet }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Here you can submit the data to the server
-    // Include customer, estimateNumber, and lineItems
-    submitNewSheet({ customer, estimateNumber, lineItems });
-    // Reset fields after submission
+    submitNewSheet({
+      customer,
+      estimateNumber,
+      lineItems
+    });
     setCustomer('');
     setEstimateNumber('');
     setLineItems([]);
@@ -68,41 +82,55 @@ const FormInput = ({ submitNewSheet }) => {
               <input type="number" placeholder="Materials ($)" value={materials} onChange={handleInputChange(setMaterials)} className="border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
               <input type="number" placeholder="Engineering Hours" value={engineeringHours} onChange={handleInputChange(setEngineeringHours)} className="border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
               <input type="number" placeholder="Production Hours" value={productionHours} onChange={handleInputChange(setProductionHours)} className="border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
-              <input type="number" placeholder="Finish Hours" value={finishHours} onChange={handleInputChange(setFinishHours)} className="border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
-              <input type="number" placeholder="Installation Hours" value={installationHours} onChange={handleInputChange(setInstallationHours)} className="border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
-            </div>
-            <button type="button" onClick={handleAddLineItem} className="px-4 py-2 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50">Add Line Item</button>
-          </div>
-        </div>
+              <input type="number" placeholder="Finish Hours" value={finishHours} onChange={handleInputChange(setFinishHours)} className="border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-
+500" />
+<input type="number" placeholder="Installation Hours" value={installationHours} onChange={handleInputChange(setInstallationHours)} className="border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+</div>
+<button type="button" onClick={handleAddLineItem} className="px-4 py-2 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50">Add Line Item</button>
+</div>
+</div>
 
-        {/* Render added line items */}
-        <ul className="list-disc pl-5 space-y-2">
-          {lineItems.map((item, index) => (
-            <li key={index} className="bg-gray-100 p-3 rounded-md">
-              <p className="font-medium">Description: <span className="font-normal">{item.description}</span></p>
-              <p className="font-medium">Materials: <span className="font-normal">{item.materials}</span></p>
-              <p className="font-medium">Engineering Hours: <span className="font-normal">{item.engineeringHours}</span></p>
-              <p className="font-medium">Production Hours: <span className="font-normal">{item.productionHours}</span></p>
-              <p className="font-medium">Finish Hours: <span className="font-normal">{item.finishHours}</span></p>
-              <p className="font-medium">Installation Hours: <span className="font-normal">{item.installationHours}</span></p>
-            </li>
-          ))}
-        </ul>
+<ul className="list-disc pl-5 space-y-2">
+{lineItems.map((item, index) => (
+<li key={index} className="bg-gray-100 p-3 rounded-md">
+<p>Description: <span className="font-normal">{item.description}</span></p>
+<p>Materials: <span className="font-normal">{item.materials}</span></p>
+<p>Engineering Hours: <span className="font-normal">{item.engineeringHours}</span></p>
+<p>Production Hours: <span className="font-normal">{item.productionHours}</span></p>
+<p>Finish Hours: <span className="font-normal">{item.finishHours}</span></p>
+<p>Installation Hours: <span className="font-normal">{item.installationHours}</span></p>
+</li>
+))}
+</ul>
 
-        <div className="flex justify-center mt-8">
-          <button type="submit" className="px-6 py-3 bg-green-500 text-white font-medium rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50">
-            Submit Estimate
-          </button>
-        </div>
-      </form>
-    </div>
-  );
+<div className="flex justify-center mt-8">
+<button type="submit" className="px-6 py-3 bg-green-500 text-white font-medium rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50">
+Submit Estimate
+</button>
+</div>
+</form>
+</div>
+);
 };
 
 FormInput.propTypes = {
-  submitNewSheet: PropTypes.func.isRequired,
+submitNewSheet: PropTypes.func.isRequired,
+activeSheetData: PropTypes.shape({
+customer: PropTypes.string,
+estimateNumber: PropTypes.string,
+lineItems: PropTypes.arrayOf(PropTypes.shape({
+description: PropTypes.string,
+materials: PropTypes.string,
+engineeringHours: PropTypes.string,
+productionHours: PropTypes.string,
+finishHours: PropTypes.string,
+installationHours: PropTypes.string,
+}))
+}),
+};
+
+FormInput.defaultProps = {
+activeSheetData: null,
 };
 
 export default FormInput;
-
-              
