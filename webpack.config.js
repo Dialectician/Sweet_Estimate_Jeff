@@ -46,12 +46,7 @@ const devDialogEntry = './dev/index.js';
 
 // define client entry points and output names
 const clientEntrypoints = [
-  {
-    name: 'CLIENT - Dialog Demo Bootstrap',
-    entry: './src/client/dialog-demo-bootstrap/index.js',
-    filename: 'dialog-demo-bootstrap',
-    template: './src/client/dialog-demo-bootstrap/index.html',
-  },
+  
   {
     name: 'CLIENT - Dialog Demo MUI',
     entry: './src/client/dialog-demo-mui/index.js',

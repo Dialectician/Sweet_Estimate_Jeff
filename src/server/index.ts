@@ -1,6 +1,5 @@
 import {
   onOpen,
-  openDialogBootstrap,
   openDialogMUI,
   openDialogTailwindCSS,
   openAboutSidebar,
@@ -12,7 +11,6 @@ import { getSheetsData, addSheet, deleteSheet, setActiveSheet } from './sheets';
 // Public functions must be exported as named exports
 export {
   onOpen,
-  openDialogBootstrap,
   openDialogMUI,
   openDialogTailwindCSS,
   openAboutSidebar,
