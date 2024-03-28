@@ -202,7 +202,7 @@ const FormInput = ({ submitNewSheet, activeSheetData }) => {
               </label>
             </div>
             {/* Materials Field */}
-            <div className="relative">
+            <div className="relative mt-8 mb-8">
               <input
                 type="number"
                 value={materials}
@@ -257,7 +257,7 @@ const FormInput = ({ submitNewSheet, activeSheetData }) => {
             </div>
 
             {/* Finish Hours Field */}
-            <div className="relative">
+            <div className="relative mb-4">
               <input
                 type="number"
                 value={finishHours}
@@ -275,18 +275,21 @@ const FormInput = ({ submitNewSheet, activeSheetData }) => {
             </div>
 
             {/* Installation Hours Field */}
-            <div className="relative">
+            <div className="relative mb-44">
               <input
                 type="number"
                 value={installationHours}
                 onChange={handleInputChange(setInstallationHours, setInstallationCost)}
-                className="peer mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 placeholder-transparent"
+                className="peer mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500
+                 focus:border-indigo-500 placeholder-transparent"
                 placeholder="Installation Hours"
                 required
+                style={{ width: `${"Installation Hours".length}ch` }}
               />
               <label
                 className="absolute left-0 -top-3.5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base
-                 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm pointer-events-none"
+                 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5
+                  peer-focus:text-gray-600 peer-focus:text-sm pointer-events-none"
               >
                 Installation Hours
               </label>
