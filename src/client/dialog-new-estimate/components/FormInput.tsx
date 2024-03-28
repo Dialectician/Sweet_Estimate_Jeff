@@ -150,35 +150,113 @@ const FormInput = ({ submitNewSheet, activeSheetData }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="form-group">
             <label htmlFor="customer" className="text-gray-600 font-medium">Customer</label>
-            <input type="text" id="customer" value={customer} onChange={handleInputChange(setCustomer)} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+            <input
+              type="text"
+              id="customer"
+              value={customer}
+              onChange={handleInputChange(setCustomer)}
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              placeholder="Enter customer name"
+            />
           </div>
           <div className="form-group">
             <label htmlFor="estimateNumber" className="text-gray-600 font-medium">Estimate Number</label>
-            <input type="text" id="estimateNumber" value={estimateNumber} onChange={handleInputChange(setEstimateNumber)} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+            <input
+              type="text"
+              id="estimateNumber"
+              value={estimateNumber}
+              onChange={handleInputChange(setEstimateNumber)}
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              placeholder="Enter estimate number"
+            />
           </div>
         </div>
         <div className="border-t pt-4">
           <h2 className="text-xl font-semibold text-gray-800 mb-3">Line Items</h2>
           <div className="space-y-4">
-            <input type="text" placeholder="Description" value={description} onChange={handleInputChange(setDescription)} className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
-            <input type="number" placeholder="Materials ($)" value={materials} onChange={handleInputChange(setMaterials)} className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+            <input
+              type="text"
+              placeholder="Description"
+              value={description}
+              onChange={handleInputChange(setDescription)}
+              className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            />
+            <input
+              type="number"
+              placeholder="Materials ($)"
+              value={materials}
+              onChange={handleInputChange(setMaterials)}
+              className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            />
             <div className="grid grid-cols-2 gap-4">
-              <input type="number" placeholder="Engineering Hours" value={engineeringHours} onChange={handleInputChange(setEngineeringHours, setEngineeringCost)} className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
-              <input type="number" placeholder="Engineering Cost" value={engineeringCost} readOnly className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+              <input
+                type="number"
+                placeholder="Engineering Hours"
+                value={engineeringHours}
+                onChange={handleInputChange(setEngineeringHours, setEngineeringCost)}
+                className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
+              <input
+                type="number"
+                placeholder="Engineering Cost"
+                value={engineeringCost}
+                readOnly
+                className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <input type="number" placeholder="Production Hours" value={productionHours} onChange={handleInputChange(setProductionHours, setProductionCost)} className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
-              <input type="number" placeholder="Production Cost" value={productionCost} readOnly className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+              <input
+                type="number"
+                placeholder="Production Hours"
+                value={productionHours}
+                onChange={handleInputChange(setProductionHours, setProductionCost)}
+                className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
+              <input
+                type="number"
+                placeholder="Production Cost"
+                value={productionCost}
+                readOnly
+                className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <input type="number" placeholder="Finish Hours" value={finishHours} onChange={handleInputChange(setFinishHours, setFinishCost)} className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
-              <input type="number" placeholder="Finish Cost" value={finishCost} readOnly className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+              <input
+                type="number"
+                placeholder="Finish Hours"
+                value={finishHours}
+                onChange={handleInputChange(setFinishHours, setFinishCost)}
+                className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
+              <input
+                type="number"
+                placeholder="Finish Cost"
+                value={finishCost}
+                readOnly
+                className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <input type="number" placeholder="Installation Hours" value={installationHours} onChange={handleInputChange(setInstallationHours, setInstallationCost)} className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
-              <input type="number" placeholder="Installation Cost" value={installationCost} readOnly className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+              <input
+                type="number"
+                placeholder="Installation Hours"
+                value={installationHours}
+                onChange={handleInputChange(setInstallationHours, setInstallationCost)}
+                className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
+              <input
+                type="number"
+                placeholder="Installation Cost"
+                value={installationCost}
+                readOnly
+                className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
             </div>
-            <button type="button" onClick={handleAddOrUpdateLineItem} className="btn btn-add-line-item">
+            <button
+              type="button"
+              onClick={handleAddOrUpdateLineItem}
+              className="btn btn-add-line-item"
+            >
               {editIndex >= 0 ? 'Update Line Item' : 'Add Line Item'}
             </button>
           </div>
@@ -191,7 +269,15 @@ const FormInput = ({ submitNewSheet, activeSheetData }) => {
                 <p>Materials: ${item.materials.toFixed(2)}</p>
                 <p>Total Cost: ${item.totalCost.toFixed(2)}</p>
               </div>
-              <button onClick={(e) => { e.preventDefault(); handleEditClick(index); }} className="btn mr-2">Edit</button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleEditClick(index);
+                }}
+                className="btn mr-2"
+              >
+                Edit
+              </button>
             </li>
           ))}
         </ul>
