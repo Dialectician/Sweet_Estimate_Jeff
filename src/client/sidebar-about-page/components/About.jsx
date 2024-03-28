@@ -3,18 +3,15 @@ import React from 'react';
 const About = () => (
   <div>
     <p>
-      <b>☀️ React app inside a sidebar! ☀️</b>
+      <b>☀️ Sidebar Test ☀️</b>
     </p>
     <p>
       This is a very simple page demonstrating how to build a React app inside a
       sidebar.
     </p>
-    <p>
-      Visit the Github repo for more information on how to use this project.
-    </p>
-    <p>- Elisha Nuchi</p>
+    
     <a
-      href="https://www.github.com/enuchi/React-Google-Apps-Script"
+      href=""
       target="_blank"
       rel="noopener noreferrer"
     >
