@@ -11,7 +11,6 @@ export const onOpen = () => {
   const menu = SpreadsheetApp.getUi()
     .createMenu('Sweet Estimates') // Menu title
     .addItem('Sheet Editor (MUI)', 'openDialogMUI') // Menu item to open the MUI dialog
-    .addItem('Sheet Editor (Tailwind CSS)', 'openDialogTailwindCSS') // Menu item to open the Tailwind CSS dialog
     .addItem('About me', 'openAboutSidebar') // Menu item to open the About sidebar
     .addItem('New Estimate (test)', 'openDialogNewEstimate'); // Menu item to open the New Estimate dialog
 
@@ -28,13 +27,6 @@ export const openDialogMUI = () => {
   SpreadsheetApp.getUi().showModalDialog(html, 'Sheet Editor (MUI)');
 };
 
-export const openDialogTailwindCSS = () => {
-  // Opens the Tailwind CSS dialog
-  const html = HtmlService.createHtmlOutputFromFile('dialog-demo-tailwindcss')
-    .setWidth(600)
-    .setHeight(600);
-  SpreadsheetApp.getUi().showModalDialog(html, 'Sheet Editor (Tailwind CSS)');
-};
 
 export const openAboutSidebar = () => {
   // Opens the About sidebar

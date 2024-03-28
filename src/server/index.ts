@@ -1,7 +1,6 @@
 import {
   onOpen,
   openDialogMUI,
-  openDialogTailwindCSS,
   openAboutSidebar,
   openDialogNewEstimate
 } from './ui';
@@ -12,7 +11,6 @@ import { getSheetsData, addSheet, deleteSheet, setActiveSheet } from './sheets';
 export {
   onOpen,
   openDialogMUI,
-  openDialogTailwindCSS,
   openAboutSidebar,
   openDialogNewEstimate,
   getSheetsData,

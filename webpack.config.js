@@ -54,12 +54,6 @@ const clientEntrypoints = [
     template: './src/client/dialog-demo-mui/index.html',
   },
   {
-    name: 'CLIENT - Dialog Demo Tailwind CSS',
-    entry: './src/client/dialog-demo-tailwindcss/index.js',
-    filename: 'dialog-demo-tailwindcss',
-    template: './src/client/dialog-demo-tailwindcss/index.html',
-  },
-  {
     name: 'CLIENT - Sidebar About Page',
     entry: './src/client/sidebar-about-page/index.js',
     filename: 'sidebar-about-page',
