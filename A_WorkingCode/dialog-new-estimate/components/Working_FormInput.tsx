@@ -1,44 +1,7 @@
-/*
- * FormInput.tsx
- *
- * This component handles user input for creating new estimates.
- * It manages state for various form fields and provides functions
- * for handling input changes, calculating costs, adding/updating
- * line items, and submitting the form.
- *
- * Imports:
- *   - React: For creating React components.
- *   - useState, useEffect, useMemo: React hooks for state management and optimization.
- *   - PropTypes: For defining and validating prop types.
- *
- * State Variables:
- *   - customer, estimateNumber, description, etc.: Store input values.
- *   - lineItems: An array to store line item data.
- *   - editIndex: Tracks the index of the line item being edited.
- *
- * Functions:
- *   - handleInputChange: Handles input changes and updates state.
- *   - calculateTotalCost: Calculates the total cost for a line item.
- *   - handleAddOrUpdateLineItem: Adds or updates a line item.
- *   - handleEditClick: Populates form fields for editing a line item.
- *   - handleSubmit: Handles form submission.
- *
- * JSX:
- *   - Defines the form structure and input fields.
- *   - Uses Tailwind CSS classes for styling.
- *   - Displays the running total.
- *   - Renders a list of line items with edit buttons.
- *   - Includes a submit button.
- *
- * Notes:
- *   - This component relies on the `submitNewSheet` function from `NewEstimateDialog.jsx`.
- */
-
 import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 const FormInput = ({ submitNewSheet, activeSheetData }) => {
-  // States for form input fields
   const [customer, setCustomer] = useState('');
   const [estimateNumber, setEstimateNumber] = useState('');
   const [description, setDescription] = useState('');
@@ -51,17 +14,15 @@ const FormInput = ({ submitNewSheet, activeSheetData }) => {
   const [productionCost, setProductionCost] = useState('');
   const [finishCost, setFinishCost] = useState('');
   const [installationCost, setInstallationCost] = useState('');
-  const [lineItems, setLineItems] = useState([]); // State for storing line item data
-  const [editIndex, setEditIndex] = useState(-1); // State for tracking the index of the line item being edited
+  const [lineItems, setLineItems] = useState([]);
+  const [editIndex, setEditIndex] = useState(-1);
 
   useEffect(() => {
-    // Updates form fields based on the active sheet data
     if (activeSheetData) {
       setCustomer(activeSheetData.customer || '');
       setEstimateNumber(activeSheetData.estimateNumber || '');
       setLineItems(activeSheetData.lineItems || []);
     } else {
-      // Resets form fields if no active sheet is selected
       setCustomer('');
       setEstimateNumber('');
       setDescription('');
@@ -80,17 +41,14 @@ const FormInput = ({ submitNewSheet, activeSheetData }) => {
   }, [activeSheetData]);
 
   const handleInputChange = (setter, costSetter?) => (event) => {
-    // Generic function to handle input changes and update corresponding state
     setter(event.target.value);
     if (costSetter) {
-      // If a cost setter is provided, calculate and update the cost based on hours
       const hours = parseFloat(event.target.value) || 0;
       costSetter(hours * 100); // Assuming $100 per hour
     }
   };
 
   const calculateTotalCost = (item) => {
-    // Calculates the total cost for a line item
     const materialsCost = parseFloat(item.materials) || 0;
     const totalHours = (parseFloat(item.engineeringHours) || 0) +
       (parseFloat(item.productionHours) || 0) +
@@ -100,7 +58,6 @@ const FormInput = ({ submitNewSheet, activeSheetData }) => {
   };
 
   const handleAddOrUpdateLineItem = () => {
-    // Handles adding or updating a line item
     const materialsCost = parseFloat(materials) || 0;
     const engHours = parseFloat(engineeringHours) || 0;
     const prodHours = parseFloat(productionHours) || 0;
@@ -137,8 +94,8 @@ const FormInput = ({ submitNewSheet, activeSheetData }) => {
       : [...lineItems, newItem];
 
     setLineItems(updatedLineItems);
-    setEditIndex(-1); // Resets editIndex after adding or updating
-    setDescription(''); // Clears form fields
+    setEditIndex(-1);
+    setDescription('');
     setMaterials('');
     setEngineeringHours('');
     setProductionHours('');
@@ -151,7 +108,6 @@ const FormInput = ({ submitNewSheet, activeSheetData }) => {
   };
 
   const handleEditClick = (index) => {
-    // Populates form fields with data from the line item being edited
     const item = lineItems[index];
     setDescription(item.description);
     setMaterials(item.materials);
@@ -167,25 +123,21 @@ const FormInput = ({ submitNewSheet, activeSheetData }) => {
   };
 
   const handleSubmit = (event) => {
-    // Handles form submission
     event.preventDefault();
     if (!customer || !estimateNumber) {
       alert("Customer and Estimate Number are required.");
       return;
     }
-    // Calls the submitNewSheet function passed as a prop (defined in NewEstimateDialog.jsx)
     submitNewSheet({
       customer,
       estimateNumber,
       lineItems,
     });
-    // Clears form fields after submission
     setCustomer('');
     setEstimateNumber('');
     setLineItems([]);
   };
 
-  // Calculates the running total of all line items
   const runningTotal = useMemo(() => lineItems.reduce((acc, item) => acc + item.totalCost, 0), [lineItems]);
 
   return (
@@ -344,7 +296,6 @@ const FormInput = ({ submitNewSheet, activeSheetData }) => {
 };
 
 FormInput.propTypes = {
-  // Defines prop types for the component
   submitNewSheet: PropTypes.func.isRequired,
   activeSheetData: PropTypes.shape({
     customer: PropTypes.string,
